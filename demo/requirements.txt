@@ -1,0 +1,6 @@
+# Ibis, with the DuckDB backend, the example-dataset loader, and the Trino
+# backend (which pulls in the `trino` python client) all in one install
+ibis-framework[duckdb,examples,trino]>=10
+
+# For running the notebook itself
+jupyterlab>=4
