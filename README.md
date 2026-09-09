@@ -1,6 +1,6 @@
 # Ibis: Bringing Optionality to Python Dataframes
 
-Slides and live-demo code for my session at **Data in the D**, 2026 (Detroit).
+Slides and live-demo code for [my session](https://www.datainthed.org/2026-sessions/ibis-bringing-opportunity-to-python-dataframes) at **Data in the D**, 2026 (Detroit).
 
 > Love the power of writing lazy executed dataframe code in Python that runs
 > on your favorite distributed data cluster? Would like some flexibility to
@@ -8,7 +8,7 @@ Slides and live-demo code for my session at **Data in the D**, 2026 (Detroit).
 > in your Python dataframe API.
 >
 > [Ibis](https://ibis-project.org/) offers a Python dataframe API that lets
-> your code run on nearly 20 backend data processing systems. It is *the*
+> your code run on more than 20 backend data processing systems. It is *the*
 > portable dataframe library. Imagine being able to run your Ibis code in
 > Polars on your laptop and then moving it to PySpark in your favorite cloud
 > provider with just changing a property. No need to imagine; you can do it
@@ -75,8 +75,6 @@ a free hosted Starburst Galaxy cluster).
 
 ## Before you present
 
-- [ ] Fill in your name/contact on the title and closing slides
-- [ ] Update the "this talk's repo" link on the closing slide once this is pushed
 - [ ] Run `prep_offline_data.py` on real wifi, ahead of time
 - [ ] Pick and test a Trino option from `demo/SETUP.md` beforehand
 
