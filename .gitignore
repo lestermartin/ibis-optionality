@@ -160,6 +160,10 @@ ENV/
 env.bak/
 venv.bak/
 
+# Local Trino credentials -- copy of demo/trino.properties.example with
+# real values filled in; never commit this one.
+demo/trino.properties
+
 # Spyder project settings
 .spyderproject
 .spyproject

@@ -7,20 +7,21 @@ two options in Step 3 — pick whichever is easier for you.
 ## 1. Install Python dependencies
 
 ```bash
-python -m venv .venv
-source .venv/bin/activate      # Windows: .venv\Scripts\activate
+python -m venv .venv             # swap python3 for python if needed
+source .venv/bin/activate        # Windows: .venv\Scripts\activate
 pip install -r requirements.txt
 ```
 
-## 2. Cache the demo dataset locally (do this before you're on stage)
+## 2. Cache the demo dataset locally (requires internet access)
 
 ```bash
 python prep_offline_data.py
 ```
 
 This downloads the small example dataset once and saves it to
-`data/penguins.parquet`. The notebook loads from that local file, so the
-live session doesn't depend on venue wifi holding up.
+`data/penguins.parquet`. The notebook loads
+from that local file / extension cache, so the live session doesn't depend
+on venue wifi holding up.
 
 ## 3. Get a Trino endpoint (pick one)
 
@@ -63,7 +64,19 @@ uses, so it's a well-trodden path.
 
 ## 4. Set your Trino connection values
 
-Either export them as environment variables before launching Jupyter:
+Three ways to do this, in order of precedence — pick whichever is easiest:
+
+**Option 1 — a `trino.properties` file (recommended for Option B's password):**
+
+```bash
+cp trino.properties.example trino.properties
+# then edit trino.properties with your real values
+```
+
+`trino.properties` is gitignored and loaded automatically by the notebook,
+so credentials never touch git history or your shell history.
+
+**Option 2 — environment variables, exported before launching Jupyter:**
 
 ```bash
 export TRINO_HOST=localhost
@@ -73,9 +86,11 @@ export TRINO_CATALOG=memory
 export TRINO_SCHEMA=default
 ```
 
-...or just edit the values directly in the notebook's Trino cell — either
-works. Environment variables keep secrets (Option B's password) out of the
-notebook file, which matters more if you'll share it afterward.
+An exported variable always wins over the same key in `trino.properties`.
+
+**Option 3 — edit the values directly in the notebook's Trino cell.** Simplest,
+but anything you type there — including a password — stays in the notebook
+file, which matters if you'll share it afterward.
 
 ## 5. Launch the notebook
 
@@ -95,6 +110,7 @@ set up in Step 3.
 | `prep_offline_data.py` | Run once beforehand to cache the dataset locally |
 | `requirements.txt` | Python dependencies |
 | `docker-compose.yml` + `trino-catalog/memory.properties` | Local Trino cluster (Option A) |
+| `trino.properties.example` | Template for your Trino connection values; copy to `trino.properties` |
 
 ## Learn more
 

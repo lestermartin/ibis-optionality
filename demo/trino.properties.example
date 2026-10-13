@@ -1,0 +1,29 @@
+# Trino connection properties for Part 5 ("the main event") of
+# ibis_optionality_demo.ipynb.
+#
+# Copy this file to trino.properties and fill in real values:
+#
+#   cp trino.properties.example trino.properties
+#
+# trino.properties is gitignored, so values -- including a Starburst Galaxy
+# password -- never get committed. The notebook loads it automatically if
+# present; a TRINO_* environment variable you've already exported still
+# wins over a value in this file, and the notebook's own hardcoded
+# defaults are the last fallback.
+
+# Local Docker Trino (SETUP.md, Option A) -- no password needed.
+TRINO_HOST=localhost
+TRINO_PORT=8080
+TRINO_USER=demo
+TRINO_CATALOG=memory
+TRINO_SCHEMA=default
+TRINO_PASSWORD=
+
+# Starburst Galaxy (SETUP.md, Option B) -- comment out the block above and
+# uncomment/fill in this one instead:
+# TRINO_HOST=<your-cluster>.trino.galaxy.starburst.io
+# TRINO_PORT=443
+# TRINO_USER=<your-email>/<your-role>
+# TRINO_CATALOG=sample
+# TRINO_SCHEMA=demo
+# TRINO_PASSWORD=<your-password>

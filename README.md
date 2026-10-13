@@ -34,6 +34,7 @@ Slides and live-demo code for [my session](https://www.datainthed.org/2026-sessi
     ├── requirements.txt
     ├── docker-compose.yml             # optional: local single-node Trino
     ├── trino-catalog/memory.properties
+    ├── trino.properties.example       # template for your Trino connection values
     └── SETUP.md                       # full step-by-step setup + Trino options
 ```
 
