@@ -3,18 +3,15 @@
 -- THIS SCRIPT IS NOT CURRENTLY USED AS DOING THE TABLE CREATION AND LOADING
 -- DIRECTLY IN THE NOTEBOOK, BUT IT CAN BE USED TO PRE-SEED THE TABLE IN 
 -- A SUPPORTED IBIS BACKEND THAT YOU WANT TO ALSO WANT TO TEST AGAINST.
---
--- This script has been tested on PostgreSQL and may require minor
--- adjustments for other backends. For example, the DOUBLE PRECISION 
--- type may need to be changed to DOUBLE depending on the backend.
+
 
 DROP TABLE IF EXISTS penguins;
 
 CREATE TABLE penguins (
     species            VARCHAR,
     island             VARCHAR,
-    bill_length_mm     DOUBLE PRECISION,
-    bill_depth_mm      DOUBLE PRECISION,
+    bill_length_mm     DOUBLE,
+    bill_depth_mm      DOUBLE,
     flipper_length_mm  BIGINT,
     body_mass_g        BIGINT,
     sex                VARCHAR,
