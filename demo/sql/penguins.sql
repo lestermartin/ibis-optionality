@@ -1,46 +1,28 @@
 -- penguins.sql
 --
 -- THIS SCRIPT IS NOT CURRENTLY USED AS DOING THE TABLE CREATION AND LOADING
--- DIRECTLY IN THE NOTEBOOK, BUT IT CAN BE USED TO PRE-SEED THE TABLE IN TRINO
+-- DIRECTLY IN THE NOTEBOOK, BUT IT CAN BE USED TO PRE-SEED THE TABLE IN 
+-- A SUPPORTED IBIS BACKEND THAT YOU WANT TO ALSO WANT TO TEST AGAINST.
 --
--- Creates and loads the `penguins` table used by
--- demo/ibis_optionality_demo.ipynb, directly in Trino's Memory connector --
--- no Python/ibis/pandas involved. Useful if you want to pre-seed the table
--- ahead of time, or load it with any SQL client instead of running the
--- notebook's `trino_con.create_table(...)` cell.
---
--- The schema matches exactly what DuckDB infers for this dataset (see
--- `demo/prep_offline_data.py` / Part 1 of the notebook): species/island/sex
--- as VARCHAR, the two bill measurements as DOUBLE, flipper length/body
--- mass/year as BIGINT -- all nullable, since a few rows are missing
--- measurements in the source data.
---
--- Usage (requires the TRINO_CATALOG=memory cluster from SETUP.md Option A,
--- or any Trino cluster with a `memory` catalog):
---
---   trino --server localhost:8080 --catalog memory --schema default \
---         -f penguins.sql
---
--- Table names below are fully catalog/schema-qualified, so this also runs
--- fine from a client already connected to a different catalog/schema.
+-- This script has been tested on PostgreSQL and may require minor
+-- adjustments for other backends. For example, the DOUBLE PRECISION 
+-- type may need to be changed to DOUBLE depending on the backend.
 
-DROP TABLE IF EXISTS memory.default.penguins;
+DROP TABLE IF EXISTS penguins;
 
-CREATE TABLE memory.default.penguins (
+CREATE TABLE penguins (
     species            VARCHAR,
     island             VARCHAR,
-    bill_length_mm     DOUBLE,
-    bill_depth_mm      DOUBLE,
+    bill_length_mm     DOUBLE PRECISION,
+    bill_depth_mm      DOUBLE PRECISION,
     flipper_length_mm  BIGINT,
     body_mass_g        BIGINT,
     sex                VARCHAR,
     year               BIGINT
 );
 
--- 344 rows, one multi-row INSERT -- Trino runs each INSERT as its own
--- distributed query, so batching like this is far cheaper than 344
--- separate statements.
-INSERT INTO memory.default.penguins (
+-- 344 rows, one multi-row INSERT 
+INSERT INTO penguins (
     species, island, bill_length_mm, bill_depth_mm,
     flipper_length_mm, body_mass_g, sex, year
 ) VALUES
